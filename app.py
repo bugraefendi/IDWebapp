@@ -69,7 +69,7 @@ def home_page():
     return render_template('home.html')
 
 
-@app.route('/settings', methods=['GET', 'POST'])
+@app.route('viyatogo-singlenode/settings', methods=['GET', 'POST'])
 def Login():
     global publishedDecision, form
     form = SettingForms()
@@ -230,7 +230,7 @@ def reason():
     return graphJson
 
 
-@app.route('/decision', methods=['GET', 'POST'])
+@app.route('viyatogo-singlenode/decision', methods=['GET', 'POST'])
 # @login_required
 def scoreDecision():
     global formDecision, debtinc
