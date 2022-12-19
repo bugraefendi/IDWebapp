@@ -64,12 +64,12 @@ class Decisionform(FlaskForm):
 #     return wrap
 
 
-@app.route('/')
+@app.route('/haydar')
 def home_page():
     return render_template('home.html')
 
 
-@app.route('/viyatogo-singlenode/settings', methods=['GET', 'POST'])
+@app.route('/haydar/settings', methods=['GET', 'POST'])
 def Login():
     global publishedDecision, form
     form = SettingForms()
@@ -80,7 +80,7 @@ def Login():
                        form.password.data, verify_ssl=False)
         current_session(sess)
         session['set'] = 'SAS'
-        return redirect('/decision')
+        return redirect(url_for('scoreDecision'))
     else:
         redirect('404.html')
     return render_template('form.html', form=form)
@@ -230,7 +230,7 @@ def reason():
     return graphJson
 
 
-@app.route('/viyatogo-singlenode/decision', methods=['GET', 'POST'])
+@app.route('/haydar/decision', methods=['GET', 'POST'])
 # @login_required
 def scoreDecision():
     global formDecision, debtinc
