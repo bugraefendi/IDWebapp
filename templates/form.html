@@ -1,0 +1,239 @@
+<html>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!-- <link rel="stylesheet" type="text/css" href="C:\Users\splknw\OneDrive - SAS\Desktop\webapp-decision-main\templates\navbar.css"> -->
+<style>
+
+  .navbar-nav {
+    list-style-type: none;
+    margin-bottom: 20px;    
+    padding: 20px;
+    width: 100%;
+    overflow: hidden;
+    background-color: rgb(108, 158, 232);
+    border-radius: 8px;
+  }
+
+  .title {
+    margin-top: 65px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+
+  }
+
+  img {
+    float: right;
+  }
+
+  
+      
+  .nav-itemactive {
+    float: left;
+      }
+      
+  .nav-itemactive a {
+    display: inline-block;
+    text-align: center;
+    padding: 20px 40px 10px 40px;
+    text-decoration: none;
+    font: bold 14pt 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      
+      /* Change the link color to #111 (black) on hover */
+    .nav-itemactive a:hover {
+    background-color: rgb(159, 191, 222);
+    text-decoration: none;
+      }
+    #forms {
+            overflow: visible;
+            background-color: white;
+            font: 15pt 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 20px;
+            display: inline-block;
+            width: 600px;
+            margin: 20px 10px 0 15px;
+            border-radius: 8px;
+            padding-right: 5px;
+            color:rgb(108, 158, 232) ;
+        }
+
+        #information{
+            display: inline-block;
+            width: 575px;
+            position: absolute;
+            height: 340px;
+            border-radius: 8px;
+            background-color: white;
+            text-align: center;
+            font-size: 14pt;
+            font-style: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-top: 20px;
+            
+        }
+
+        #information_title {
+            margin-top: 20px;
+            font: bold 16pt 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            
+
+
+        }
+
+        #information_body {
+            display: inline-block;
+            width: 350px;
+            text-align: justify;
+
+
+        }
+
+        .container {
+
+            width: 150px;
+            clear: both;
+
+        }
+
+        .container label {
+            display: inline-block;
+            width: 200px;
+            text-align: left;
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: rgb(108, 158, 232);
+            border: none;
+            color: white;
+            padding: 8px 26px;
+            margin: 20px 0px 20px 220px;
+            text-align: center;
+            display: inline-block;
+            font-size: 10pt;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            border-radius: 8px;
+
+        }
+
+        #website2{
+
+            background-color: gray;
+        }
+
+        .nav-linkC {
+          color: white;
+          text-shadow: 0 0 3px white;
+        }
+
+        .nav-linkB {
+
+            color: white;
+        }
+
+        .nav-linkA {
+
+            color: white;
+        }
+
+
+
+       
+            
+
+</style>
+</head>
+
+<body id="website2">
+    {% extends "bootstrap/base.html" %} {% block title %}Flasky{% endblock %}
+    {% block content %}
+      <!-- <nav class="nav nav-pills nav-fill">
+    <a class="navbar-brand" href="{{ url_for('home_page')}}">Decisioning App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <!-- <div class="header" id ="headernavigation">
+      <p id = "Title">Decisioning App</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/SAS_logo_horiz.svg" alt="SAS" width="170" height="170"/> -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/SAS_logo_horiz.svg" alt="SAS" width="170" height="170"/>
+      <h1 id = "Title" class="title">Decisioning App</h1>
+      <ul id="navbar_ul" class="navbar-nav">
+        <li id="navbar_1" class="nav-itemactive">
+          <a class="nav-linkA" href="/">About</a>
+          <a class="nav-linkB" href="/decision">Ask SAS</a>
+          <a class="nav-linkC" href="/settings">Set your decision endpoint</a>
+
+        </li>
+      </ul>
+    </div>
+  </nav>
+    <form method="POST" action="{{ url_for('Login') }}">
+        <div id = "forms" class = "container">
+
+            <ul id = "host">
+            {{ form.csrf_token }}
+            {{ form.viya_url.label }}
+            {{ form.viya_url }}
+            </ul>
+            <ul id = "username">
+            {{ form.username.label }}
+            {{ form.username }}
+            </ul>
+            <ul id ="password">
+            {{ form.password.label }}
+            {{ form.password }}
+            </ul>
+            <ul id = "decision">
+            {{form.publishedDecision.label }}
+            {{form.publishedDecision }}
+            </ul>
+            <input class="button" type="submit" value="Submit">
+        </div>
+        <div id="information">
+            <p id="information_title">Settings tab
+            </p>
+            <p id="information_body">On this tab please provide all of the infromation needed to create connection
+                to Viya. Host name stands for URL of the enviroment. Username and password should be the same that those used
+                to log in to Viya.
+
+
+            </p>
+
+
+
+        </div>
+
+        <ul>
+            {% for error in form.viya_url.errors %}
+            <li> style="color:red">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+        <ul>
+            {% for error in form.username.errors %}
+            <li> style="color:red">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+        <ul>
+            {% for error in form.viya_url.errors %}
+            <li> style="color:red">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+        <ul>
+            {% for error in form.viya_url.errors %}
+            <li> style="color:red">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+    </form>
+    {% endblock %}
+</body>
+
+</html>

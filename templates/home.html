@@ -1,0 +1,134 @@
+<html>
+  {% extends "bootstrap/base.html" %} {% block title %}Flasky{% endblock %}{% block navbar %}
+
+  <head>
+  <!-- <link rel="stylesheet" type="text/css" href="C:\Users\splknw\OneDrive - SAS\Desktop\webapp-decision-main\templates\navbar.css"> -->
+  <style>
+
+    
+    .navbar-nav {
+    list-style-type: none;
+    margin-bottom: 20px;    
+    padding: 20px;
+    width: 100%;
+    overflow: hidden;
+    background-color: rgb(108, 158, 232);
+    border-radius: 8px;
+    }
+
+    .title {
+    margin-top: 65px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+
+    }
+
+    img {
+    float: right;
+    }
+
+  
+      
+    .nav-itemactive {
+    float: left;
+      }
+      
+    .nav-itemactive a {
+    display: inline-block;
+    text-align: center;
+    padding: 20px 40px 10px 40px;
+    text-decoration: none;
+    font: bold 14pt 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      
+      /* Change the link color to #111 (black) on hover */
+    .nav-itemactive a:hover {
+    background-color: rgb(159, 191, 222);
+    text-decoration: none;
+      }
+
+    #tekst {
+      text-align: center;
+      margin-top: 45px;
+
+    }
+
+    #first_line {
+      color: white;
+      font: bold 22pt 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+
+    }
+        
+
+    #website {
+
+      background-color: gray;
+    }
+
+    #tresc {
+      display: inline-block;
+      width: 750px;
+      color: white;
+      font: 17pt 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+    }
+
+    .nav-linkC {
+
+      color: white;
+    }
+
+    .nav-linkB {
+
+      color: white;
+    }
+
+    .nav-linkA {
+
+      color: white;
+      text-shadow: 0 0 3px white;
+    }
+        
+  </style>
+  </head>
+  <!-- <nav class="nav nav-pills nav-fill">
+    <a class="navbar-brand" href="{{ url_for('home_page')}}">Decisioning App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <!-- <div class="header" id ="headernavigation">
+      <p id = "Title">Decisioning App</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/SAS_logo_horiz.svg" alt="SAS" width="170" height="170"/> -->
+    <body id="website">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/SAS_logo_horiz.svg" alt="SAS" width="170" height="170"/>
+        <h1 id = "Title" class='title'>Decisioning App</h1>
+        <ul class="navbar-nav" id="navbar_ul">
+          <li class="nav-itemactive" id="navbar_1">
+            <a class="nav-linkA" href="/">About</a>
+            <a class="nav-linkB" href="/decision">Ask SAS</a>
+            <a class="nav-linkC" href="/settings">Set your decision endpoint</a>
+
+           </li>
+        </ul>
+      </div>
+      <div id="tekst">
+        <p id ="first_line">Welcome to Decisioning App!</p>
+        <p id ="tresc">Use this web interface to connect to SAS Viya host and test your decisions with
+          3rd party integration.
+          Before you start please head to settings tab to provide all of the connection details.
+          After successfully connecting you can enter your data to get the decision. 
+        </p>
+
+
+      
+      </div>
+    </body>
+  
+  {% endblock %} 
+</html>
+
+
+
+

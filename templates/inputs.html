@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="C:\Users\splknw\OneDrive - SAS\Desktop\webapp-decision-main\templates\navbar.css">
+<style>
+            /* <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --> */
+
+    .navbar-nav {
+    list-style-type: none;
+    margin-bottom: 20px;    
+    padding: 20px;
+    width: 100%;
+    overflow: hidden;
+    background-color: rgb(108, 158, 232);
+    border-radius: 8px;
+    }
+
+  .title {
+    margin-top: 65px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+
+    }
+
+  img {
+    float: right;
+    }
+
+  
+      
+  .nav-itemactive {
+    float: left;
+      }
+      
+  .nav-itemactive a {
+    display: inline-block;
+    text-align: center;
+    padding: 20px 40px 10px 40px;
+    text-decoration: none;
+    font: bold 14pt 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      
+      /* Change the link color to #111 (black) on hover */
+  .nav-itemactive a:hover {
+    background-color: rgb(159, 191, 222);
+    text-decoration: none;
+      }
+
+    
+
+  .container_inputs {
+    margin: 20px 5px 20px 15px;
+    width: 650px;
+    clear: both;
+    background-color: white;
+    border-radius: 8px;
+    display: inline-block;
+    }
+  .container_inputs label {
+
+    width: 400px;
+    text-align: left;
+    overflow: visible;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color:rgb(108, 158, 232) ;
+    padding-top: 30px;
+    display: inline-block;
+    margin-top: -15px;
+  }
+
+
+
+
+
+  #website3 {
+    background-color: gray;
+
+  }
+
+  #databutton{
+    background-color: rgb(115, 122, 134);
+    border: none;
+    color: white;
+    padding: 8px 26px;
+    margin: 15px 0 0 30px;
+    text-align: center;
+    display: inline-block;
+    font: 8pt Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 8px;
+
+  }
+
+
+
+  #submitbutton {
+    background-color: rgb(108, 158, 232);
+    border: none;
+    color: white;
+    padding: 8px 26px;
+    margin: 20px 0 20px 200px;
+    text-align: center;
+    display: inline-block;
+    clear: none;
+    font: 10pt Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 8px;
+
+  }
+
+  #resetform {
+    background-color: rgb(240, 140, 124);
+    border: none;
+    color: white;
+    padding: 8px 26px;
+    margin: 20px 0 20px 10px;
+    text-align: center;
+    clear: none;
+    display: inline-block;
+    font: 10pt Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 8px;
+
+  }
+
+  #information_inputs {
+    display: inline-block;
+    position: absolute;
+    background-color: white;
+    width: 530px;
+    height: fit-content;
+    border-radius: 8px;
+    text-align: center;
+    padding-bottom: 20px;
+    margin-top: 20px;
+  }
+
+
+
+  .nav-linkC {
+
+    color: white;
+  }
+
+  .nav-linkB {
+    color: white;
+    text-shadow: 0 0 3px white;
+  }
+
+  .nav-linkA {
+
+    color: white;
+  }
+
+  #information_inputs_title {
+    margin-top: 20px;
+    font: bold 16pt 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+  }
+
+  #information_inputs_body {
+    display: inline-block;
+    width: 350px;
+    text-align: justify;
+    font-size: 14pt;
+
+  }
+
+
+
+
+
+</style>
+</head>
+
+<body id="website3">
+  {% extends "bootstrap/base.html" %} {% block title %}Flasky{% endblock %}
+  {% block content %}
+    <!-- <nav class="nav nav-pills nav-fill">
+  <a class="navbar-brand" href="{{ url_for('home_page')}}">Decisioning App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button> -->
+  <!-- <div class="header" id ="headernavigation">
+    <p id = "Title">Decisioning App</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/SAS_logo_horiz.svg" alt="SAS" width="170" height="170"/> -->
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/SAS_logo_horiz.svg" alt="SAS" width="170" height="170"/>
+    <h1 id = "Title" class="title">Decisioning App</h1>
+    <ul id="navbar_ul" class="navbar-nav">
+      <li id="navbar_1" class="nav-itemactive">
+        <a class="nav-linkA" href="/">About</a>
+        <a class="nav-linkB" href="/decision">Ask SAS</a>
+        <a class="nav-linkC" href="/settings">Set your decision endpoint</a>
+
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container-form">
+    <form method="POST" action="{{ url_for('scoreDecision') }}" class="form" role="form">
+      {{ form.csrf_token() }}
+      <div id="container_inputs1" class="container_inputs">
+        <div>
+          <button type="button" id="databutton" class="btn btn-info btn-sm" data-toggle="modal" data-target="#MyInfoModal">Check Data
+            Description</button>
+        </div>
+        <div id="active">
+          <ul>
+            {{form.average_active.label}}
+            {{form.average_active}}
+          </ul>
+        </div>
+        <div id="form1" onchange="jobgroup()">
+          <ul>
+            {{ form.job.label }}
+            {{ form.job }}
+          </ul>
+        </div>
+        <div id="form2" style="visibility: hidden;">
+          <ul>
+            {{ form.loan.label }}
+            {{ form.loan }}
+          </ul>
+        </div>
+        <div id="form9" style="visibility: hidden;">
+          <ul>
+            {{ form.yoj.label }}
+            {{ form.yoj }}
+          </ul>
+        </div>
+        <div id="form11" style="visibility: hidden;">
+          <ul>
+            {{ form.income.label }}
+            {{ form.income }}
+          </ul>
+        </div>
+        <div id="form13" style="visibility: hidden;" onchange="mortgroup()">
+          <ul>
+            {{ form.currentDebt.label }}
+            {{ form.currentDebt }}
+          </ul>
+        </div>
+        <div id="form3" style="visibility: hidden;">
+          <ul>
+            {{ form.mortdue.label }}
+            {{ form.mortdue }}
+          </ul>
+        </div>
+        <div id="form4" style="visibility: hidden;">
+          <ul>
+            {{ form.delinq.label }}
+            {{ form.delinq }}
+          </ul>
+        </div>
+        <div id="form5" style="visibility: hidden;">
+          <ul>
+            {{ form.derog.label }}
+            {{ form.derog }}
+          </ul>
+        </div>
+        <div id="form12" style="visibility: hidden;" onchange="reasongroup()">
+          <ul>
+            {{ form.value.label }}
+            {{ form.value }}
+          </ul>
+        </div>
+        <div id="form6" style="visibility: hidden;">
+          <ul>
+            {{ form.clage.label }}
+            {{ form.clage }}
+          </ul>
+        </div>
+        <div id="form7" style="visibility: hidden">
+          <ul>
+            {{ form.ninq.label }}
+            {{ form.ninq }}
+          </ul>
+        </div>
+        <div id="form8" style="visibility: hidden">
+          <ul>
+            {{ form.clno.label }}
+            {{ form.clno }}
+          </ul>
+        </div>
+        <div id="form10" style="visibility: hidden;">
+          <ul>
+            {{ form.reason.label }}
+            {{ form.reason }}
+          </ul>
+        </div>
+        <button type="button" id ="submitbutton" class="btn btn-primary" data-toggle="modal" data-target="#MyFancyModal">Submit
+        </button>
+        <button type="reset" id="resetform" class="btn btn-danger">Reset
+        </button>
+      </div>
+      <div id="information_inputs">
+        <p id="information_inputs_title">Decision Tab
+        </p>
+        <p id="information_inputs_body">Here is the form you can fill to obtain a decision. 
+          If you would like to fill the form with average values please click the box in the first field
+          of the form. Questions are grouped into sets so the next questions will appear only after you provide
+          previous information. After the form is filled press "Submit" button to send the data to Viya and wait 
+          for the results.
+
+          If you want to start over press the reset button.
+        </p>
+      </div>
+      <div class="container">
+        <div id="MyFancyModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">Please confirm</div>
+              <div class="modal-body" id="modalbody">
+                "Are you sure to submit?"
+              </div>
+              <div class="modal-footer">
+                <form action="{{ scoreDecision }}" method="post">
+                  <button type="submit" class="btn btn-danger">Yes</button>
+                  <button class="btn btn-default" data-dismiss="modal">
+                    No
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div id="MyFancyModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">Please confirm</div>
+              <div class="modal-body" id="modalbody">
+                "Are you sure to submit?"
+              </div>
+              <div class="modal-footer">
+                <form action="{{ scoreDecision }}" method="post">
+                  <button type="submit" class="btn btn-danger">Yes</button>
+                  <button class="btn btn-default" data-dismiss="modal">
+                    No
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-modal-info">
+        <div id="MyInfoModal" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Data Description</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas
+                  eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue
+                  laoreet rutrum faucibus dolor auctor.</p>
+                <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl
+                  consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas
+                  eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue
+                  laoreet rutrum faucibus dolor auctor.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-modal-info">
+        <div id="MyInitialDecisionModal" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Data Description</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Would you like to proceed based on your job expereince?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  {% block scripts %}
+  {{ super() }}
+  <script>
+    function randomIntFromInterval(min, max) { // min and max included 
+      return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+    var checkbox = document.getElementById("average_active");
+    checkbox.addEventListener('change', (event) => {
+      if (event.currentTarget.checked) {
+        for(var i=1;i<=13;i++) {document.getElementById("form"+i).style.visibility = "visible";}
+        document.getElementById("loan").value = randomIntFromInterval(1800, 1900);
+        document.getElementById("mortdue").value = randomIntFromInterval(72000, 73769);
+        document.getElementById("delinq").value = 0;
+        document.getElementById("yoj").value = randomIntFromInterval(5, 10);
+        document.getElementById("derog").value = 0;
+        document.getElementById("ninq").value = 1;
+        document.getElementById("clage").value = randomIntFromInterval(170, 190);
+        document.getElementById("value").value = randomIntFromInterval(101500, 102000);
+        document.getElementById("clno").value = randomIntFromInterval(18, 22);
+        document.getElementById("income").value = randomIntFromInterval(63000, 67000);
+        document.getElementById("currentDebt").value = randomIntFromInterval(1900, 2100);
+        document.getElementById("job").value = "Self";
+        document.getElementById("reason").value = "Other";
+
+      } else {
+        document.getElementById("resetform").click();
+        for(var i=2;i<=13;i++) {document.getElementById("form"+i).style.visibility = "hidden";}
+      }
+    });
+    function jobgroup() {
+      var income = document.getElementById("form11");
+      var loan = document.getElementById("form2");
+      var yoj = document.getElementById("form9");
+      var debt = document.getElementById("form13");
+
+      income.style.visibility = income.style.visibility = 'visible';
+      loan.style.visibility = loan.style.visibility = 'visible';
+      yoj.style.visibility = yoj.style.visibility = 'visible';
+      debt.style.visibility = debt.style.visibility = 'visible';
+
+    }
+    function mortgroup() {
+      var value = document.getElementById("form12");
+      var derog = document.getElementById("form5");
+      var delinq = document.getElementById("form4");
+      var mortdue = document.getElementById("form3");
+      value.style.visibility = value.style.visibility = 'visible';
+      derog.style.visibility = derog.style.visibility = 'visible';
+      delinq.style.visibility = delinq.style.visibility = 'visible';
+      mortdue.style.visibility = mortdue.style.visibility = 'visible';
+
+    }
+    function reasongroup() {
+      var ninq = document.getElementById("form7");
+      var reason = document.getElementById("form10");
+      var clage = document.getElementById("form6");
+      var clno = document.getElementById("form8");
+      ninq.style.visibility = ninq.style.visibility = 'visible';
+      reason.style.visibility = reason.style.visibility = 'visible';
+      clage.style.visibility = clage.style.visibility = 'visible';
+      clno.style.visibility = clno.style.visibility = 'visible';
+
+    }
+  </script>
+  {% endblock %}
+  {% endblock %}
+</body>
+
+</html>
